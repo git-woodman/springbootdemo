@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: dev
+
+  freemarker:
+    #设置模板后缀名
+    suffix: .ftl
+    #设置文档类型
+    content-type: text/html
+    #设置页面编码格式
+    charset: UTF-8
+    #设置页面缓存
+    cache: false
+    #设置ftl文件路径
+    template-loader-path: classpath:/templates
+  #设置静态文件路径，js,css等
+  mvc:
+    static-path-pattern: /static/**
+
+aliyun:       
+  appKey: 1
+  appSecret: 1
+  bucket: lynn
+  endPoint: https://www.aliyun.com
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.chengxh.springbootdemo.entity
+
+logging:
+  level:
+    com.chengxh.springbootdemo.mapper: debug
+
+
