@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.HashOperations;
@@ -14,6 +16,8 @@ import org.springframework.data.redis.core.ZSetOperations;
 
 @Configuration
 public class RedisUtil {
+	
+	private static final Logger logger = LoggerFactory.getLogger(RedisUtil.class);
 	
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
@@ -29,7 +33,7 @@ public class RedisUtil {
             redisTemplate.opsForValue().set(key, value);
             result = true;
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage(), e);
         }
         return result;
     }
@@ -46,7 +50,7 @@ public class RedisUtil {
             redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage(), e);
         }
         return result;
     }
